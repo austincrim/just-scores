@@ -20,6 +20,9 @@ export let load: PageServerLoad = async ({ params, fetch }) => {
   let games: NcaaBBEvent[] = await gamesRes.json()
 
   return {
-    games
+    games: games.sort(
+      (a, b) =>
+        new Date(a.game_date).valueOf() - new Date(b.game_date).valueOf()
+    )
   }
 }
