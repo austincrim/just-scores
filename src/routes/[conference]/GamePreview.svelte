@@ -14,20 +14,20 @@
         team={{
           ...game.away_team,
           ranking: game.away_ranking,
-          score: game.box_score.score.away.score
+          score: game.box_score?.score.away.score
         }}
       />
       <TeamLine
         team={{
           ...game.home_team,
           ranking: game.home_ranking,
-          score: game.box_score.score.home.score
+          score: game.box_score?.score.home.score
         }}
       />
     </div>
     <div class="flex justify-center w-[10ch]">
       {#if game.status !== 'pre_game'}
-        <span>{game.box_score.progress.string}</span>
+        <span>{game.box_score?.progress.string}</span>
       {:else}
         <span>
           {new Date(game.game_date).toLocaleTimeString(undefined, {
