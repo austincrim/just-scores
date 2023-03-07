@@ -1,5 +1,5 @@
 import { redirect } from '@sveltejs/kit'
 
 export let load = () => {
-  throw redirect(307, '/top%2025')
+  throw redirect(307, '/Top%2025')
 }

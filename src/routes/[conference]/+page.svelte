@@ -7,9 +7,12 @@
 
   export let data: PageData
   onMount(() => {
-    let interval = setInterval(() => {
-      invalidateAll()
-    }, 5000)
+    let interval: number | undefined
+    if (data.games.some((g) => g.status === 'in_progress')) {
+      interval = setInterval(() => {
+        invalidateAll()
+      }, 5000)
+    }
 
     return () => {
       clearInterval(interval)

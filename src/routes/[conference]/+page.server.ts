@@ -4,7 +4,7 @@ import type { PageServerLoad } from './$types'
 
 export let load: PageServerLoad = async ({ params, fetch }) => {
   let res = await fetch(
-    `${PUBLIC_SCORE_API_URL}/ncaab/schedule?conference=${params.conference}`
+    `${PUBLIC_SCORE_API_URL}/ncaab/schedule?conference=${params.conference}&utc_offset=-21600`
   )
 
   if (!res.ok) console.error(await res.text())
