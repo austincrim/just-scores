@@ -22,19 +22,36 @@
   })
 </script>
 
-<main class="w-full max-w-xl">
-  <div class="flex items-center gap-4 text-xl">
-    <div class="text-3xl flex flex-col gap-12 w-full px-8">
-      <div class="flex justify-between">
-        <span class="font-bold">{data.game.away_team.name}</span>
+<nav class="self-start px-8 pb-12">
+  <a href="/">&larr; Back</a>
+</nav>
+<main class="w-full max-w-2xl">
+  <div class="flex items-center gap-6 text-xl">
+    <div class="text-4xl flex flex-col gap-6 w-full px-12">
+      <div class="flex justify-between items-center">
+        <span class="font-bold flex items-center gap-2">
+          <img
+            src={data.game.away_team.logos.small}
+            alt="{data.game.away_team.name} logo"
+            class="h-16 w-16 object-cover"
+          />
+          {data.game.away_team.name}
+        </span>
         {#if data.game.status !== 'pre_game'}
           <span class="tabular-nums">
             {data.game.box_score.score.away.score}
           </span>
         {/if}
       </div>
-      <div class="flex justify-between">
-        <span class="font-bold">{data.game.home_team.name}</span>
+      <div class="flex justify-between items-center">
+        <span class="font-bold flex items-center gap-2">
+          <img
+            src={data.game.home_team.logos.small}
+            alt="{data.game.home_team.name} logo"
+            class="h-16 w-16 object-cover"
+          />
+          {data.game.home_team.name}
+        </span>
         {#if data.game.status !== 'pre_game'}
           <span class="tabular-nums">
             {data.game.box_score.score.home.score}
@@ -46,7 +63,7 @@
       {data.game.box_score.progress.string}
     </span>
   </div>
-  <div class="flex justify-center mt-10">
+  <div class="flex justify-center mt-16 text-sm">
     {data.stats.last_play.description}
   </div>
 </main>
