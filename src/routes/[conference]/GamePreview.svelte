@@ -9,7 +9,7 @@
   <div
     class="flex gap-4 justify-between items-center border p-4 rounded-md shadow-sm"
   >
-    <div class="flex flex-col flex-1 gap-1">
+    <div class="flex flex-col flex-1 gap-4">
       <TeamLine
         team={{
           ...game.away_team,
@@ -25,7 +25,7 @@
         }}
       />
     </div>
-    <div class="flex justify-center w-[10ch]">
+    <div class="flex flex-col items-center gap-1 w-[10ch]">
       {#if game.status !== 'pre_game'}
         <span>{game.box_score?.progress.string}</span>
       {:else}
@@ -35,6 +35,9 @@
           })}
         </span>
       {/if}
+      <span class="text-sm text-gray-700">
+        {game.tv_listings_by_country_code['us'][0].long_name}
+      </span>
     </div>
   </div>
 </a>

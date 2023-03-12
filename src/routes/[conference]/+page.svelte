@@ -1,22 +1,24 @@
 <script lang="ts">
   import { onMount } from 'svelte'
-  import { invalidateAll } from '$app/navigation'
+  import { beforeNavigate, invalidateAll } from '$app/navigation'
   import { navigating } from '$app/stores'
   import GamePreview from './GamePreview.svelte'
-  import type { PageData } from './$types'
 
-  export let data: PageData
+  export let data
+  let invalidating: undefined | Promise<void>
   onMount(() => {
     let interval: number | undefined
-    if (data.games.some((g) => g.status === 'in_progress')) {
-      interval = setInterval(() => {
-        invalidateAll()
-      }, 5000)
-    }
+    interval = setInterval(() => {
+      invalidating = invalidateAll()
+    }, 5000)
 
     return () => {
       clearInterval(interval)
     }
+  })
+
+  beforeNavigate(async () => {
+    if (invalidating) await invalidating
   })
 </script>
 

@@ -31,7 +31,6 @@ export type NcaaBBEvent = {
   event_details: EventDetail[]
   tv_listings_by_country_code: TvListingsByCountryCode
   has_team_twitter_handles: boolean
-  standings: Standings
   box_score: BoxScore
   odd: Odd
   subscribable_alerts: SubscribableAlert[]
@@ -187,4 +186,149 @@ export type TvListingsByCountryCode = {
 export type Me = {
   short_name: string
   long_name: string
+}
+
+export type NcaaBBEventStats = {
+  referees: null
+  home_timeouts_left: null
+  away_timeouts_left: null
+  id: number
+  has_statistics: boolean
+  progress: Progress
+  updated_at: string
+  event: Event
+  api_uri: string
+  line_scores: LineScores
+  score: Score
+  share_url: string
+  team_records: MatchupRecords
+  attendance: null
+  total_segments: number
+  last_play: LastPlay
+}
+
+export type Event = {
+  location: string
+  stadium: string
+  away_conference: string
+  home_conference: string
+  colours: Colours
+  conference_names: string[]
+  has_play_by_play_records: boolean
+  stubhub_url: null
+  if_necessary: boolean
+  away_ranking: null
+  home_ranking: number
+  id: number
+  event_status: string
+  game_date: string
+  game_type: string
+  game_description: string
+  tba: boolean
+  updated_at: string
+  bet_works_id: null
+  betradar_id: string
+  top_match: null
+  status: string
+  api_uri: string
+  resource_uri: string
+  away_team: Team
+  home_team: Team
+  top_25_rankings: Top25_Rankings
+  league: League
+  preview: string
+  preview_data: PreviewData
+  event_details: EventDetail[]
+  tv_listings_by_country_code: TvListingsByCountryCode
+  has_team_twitter_handles: boolean
+  standings: Standings
+}
+
+export type PreviewData = {
+  abstract: string
+  headline: string
+}
+
+export type LastPlay = {
+  description: string
+  id: number
+  minutes: number
+  progress: Progress
+  seconds: number
+  segment: number
+  api_uri: string
+  event: string
+  team: string
+}
+
+export type LineScores = {
+  home: AwayElement[]
+  away: AwayElement[]
+}
+
+export type AwayElement = {
+  team_fouls: null
+  id: number
+  score: number
+  segment: number
+  segment_string: string
+  updated_at: string
+  api_uri: string
+}
+
+export type MatchupRecords = {
+  home: TeamRecords
+  away: TeamRecords
+}
+
+export type TeamRecords = {
+  assists: number
+  biggest_lead: number
+  blocked_shots: number
+  defensive_3_seconds: null
+  dunks: null
+  ejections_coach: null
+  ejections_player: number
+  fast_break_points: number
+  field_goals_attempted: number
+  field_goals_made: number
+  flagrant_fouls: number
+  free_throws_attempted: number
+  free_throws_made: number
+  hooks: null
+  id: number
+  illegal_defense: null
+  jumpshots: null
+  layups: null
+  minutes: number
+  personal_fouls: number
+  personal_fouls_disqualifications: number
+  points: number
+  points_in_paint: number
+  points_off_turnovers: number
+  rebounds_dead_ball: null
+  rebounds_defensive: number
+  rebounds_offensive: number
+  rebounds_team: number
+  rebounds_team_def: null
+  rebounds_team_off: null
+  rebounds_total: number
+  second_change_points: number
+  steals: number
+  team_offensive_rebounds: null
+  team_defensive_rebounds: null
+  technical_fouls_bench: null
+  technical_fouls_coach: number
+  technical_fouls_player: number
+  technical_fouls_team: null
+  three_point_field_goals_attempted: number
+  three_point_field_goals_made: number
+  tipins: null
+  turnovers: number
+  turnovers_team: number
+  updated_at: string
+  api_uri: string
+  field_goals_percentage: string
+  free_throws_percentage: string
+  three_point_field_goals_percentage: string
 }
