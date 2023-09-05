@@ -1,9 +1,8 @@
 <script lang="ts">
   import { beforeNavigate, invalidateAll } from '$app/navigation'
   import { onMount } from 'svelte'
-  import type { PageData } from './$types'
 
-  export let data: PageData
+  export let data
 
   let invalidating: undefined | Promise<void>
   onMount(() => {

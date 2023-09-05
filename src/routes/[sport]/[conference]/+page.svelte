@@ -5,6 +5,7 @@
   import GamePreview from './GamePreview.svelte'
 
   export let data
+
   let invalidating: undefined | Promise<void>
   onMount(() => {
     let interval: number | undefined

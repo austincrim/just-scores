@@ -19,7 +19,7 @@
         {#each filter as conference}
           <a
             class:selected={$page.params.conference === conference}
-            href="/{conference.trim()}"
+            href="/{$page.params.sport}/{conference.trim()}"
           >
             {conference}
           </a>

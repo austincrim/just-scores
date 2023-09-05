@@ -1,3 +1,45 @@
+export type NcaaFBEvent = {
+  bowl: null
+  important: boolean
+  location: string
+  season_week: string
+  stadium: string
+  total_quarters: number
+  colours: Colours
+  conference_names: string[]
+  has_play_by_play_records: boolean
+  stubhub_url: null
+  week: number
+  home_ranking: null
+  away_ranking: null
+  id: number
+  event_status: string
+  game_date: string
+  game_type: string
+  game_description: null
+  tba: boolean
+  updated_at: string
+  bet_works_id: null
+  betradar_id: string
+  top_match: null
+  status: string
+  api_uri: string
+  resource_uri: string
+  away_team: Team
+  home_team: Team
+  red_zone: boolean
+  top_25_rankings: Colours
+  display_fpi: boolean
+  league: League
+  event_details: EventDetail[]
+  tv_listings_by_country_code: TvListingsByCountryCode
+  has_team_twitter_handles: boolean
+  standings: Standings
+  box_score: BoxScore
+  odd: Odd
+  subscribable_alerts: SubscribableAlert[]
+}
+
 export type NcaaBBEvent = {
   important: boolean
   location: string

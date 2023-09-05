@@ -7,8 +7,11 @@ const config = {
   // for more information about preprocessors
   preprocess: [vitePreprocess()],
   kit: {
-    adapter: adapter()
-  }
+    adapter: adapter(),
+  },
+  vitePlugin: {
+    inspector: true,
+  },
 }
 
 export default config

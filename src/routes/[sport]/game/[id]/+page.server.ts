@@ -1,8 +1,7 @@
 import { PUBLIC_SCORE_API_URL } from '$env/static/public'
-import type { NcaaBBEvent, NcaaBBEventStats } from '../../../lib/types'
-import type { PageServerLoad } from './$types'
+import type { NcaaBBEvent, NcaaBBEventStats } from '$lib/types'
 
-export let load: PageServerLoad = async ({ params, fetch }) => {
+export async function load({ params, fetch }) {
   let res = await fetch(`${PUBLIC_SCORE_API_URL}/ncaab/events/${params.id}`)
 
   if (!res.ok) console.error(await res.text())
@@ -14,6 +13,6 @@ export let load: PageServerLoad = async ({ params, fetch }) => {
 
   return {
     game,
-    stats
+    stats,
   }
 }
