@@ -7,11 +7,7 @@
   let categories = allConferences.splice(0, 2)
 </script>
 
-<nav class="flex items-center justify-center gap-4 px-4">
-  <a href="/ncaaf">NCAA Football</a>
-  <a href="/ncaab">NCAA Basketball</a>
-</nav>
-<div class="flex flex-col items-center w-full gap-12 mt-8">
+<div class="flex flex-col items-center w-full gap-4 mt-8">
   <div class="space-x-4">
     {#each categories as category}
       <a
@@ -27,7 +23,7 @@
   >
     {#each allConferences as conference}
       <a
-        class="z-0 px-8 whitespace-nowrap snap-start"
+        class="z-0 px-4 whitespace-nowrap snap-start"
         class:selected={$page.params.conference === conference}
         href="/{$page.params.sport}/{conference.trim()}"
       >
