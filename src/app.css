@@ -1,6 +1,13 @@
 @tailwind base;
 @tailwind components;
-@tailwind utilities;
+
+* {
+  border-color: currentColor;
+}
+
+html {
+  scrollbar-gutter: stable;
+}
 
 h1,
 h2,
@@ -22,3 +29,5 @@ a[href]:hover {
 ::selection {
   background-color: theme('colors.emerald.500');
 }
+
+@tailwind utilities;

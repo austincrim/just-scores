@@ -5,8 +5,12 @@
   export let game: NcaaBBEvent | NcaaFBEvent
 </script>
 
-<a data-sveltekit-preload-data href={`/game/${String(game.id)}`}>
-  <div class="flex gap-4 justify-between items-center p-4 rounded-md shadow-sm">
+<a
+  class="!no-underline"
+  data-sveltekit-preload-data
+  href={`/game/${String(game.id)}`}
+>
+  <div class="flex items-center justify-between gap-4 p-4 border rounded-md">
     <div class="flex flex-col flex-1 gap-4">
       <TeamLine
         team={{

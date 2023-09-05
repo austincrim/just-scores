@@ -23,7 +23,10 @@
   })
 </script>
 
-<ol class="grid gap-6 w-full px-12 max-w-2xl" class:opacity-50={$navigating}>
+<ol
+  class="flex flex-col w-full max-w-4xl gap-6 px-12 mx-auto"
+  class:opacity-50={$navigating}
+>
   {#each data.games as game, i}
     {@const currentGameDate = new Date(game.game_date).toLocaleDateString()}
     {@const previousGameDate = new Date(
@@ -31,11 +34,11 @@
     ).toLocaleDateString()}
 
     {#if i === 0 || currentGameDate !== previousGameDate}
-      <span class="font-bold mt-4">{currentGameDate}</span>
+      <span class="mt-4 font-bold">{currentGameDate}</span>
     {/if}
     <li
       class:active={game.status === 'in_progress'}
-      class="flex flex-col gap-2 relative"
+      class="relative flex flex-col gap-2"
     >
       <GamePreview {game} />
     </li>
@@ -48,7 +51,7 @@
     position: absolute;
     height: 10px;
     width: 10px;
-    background: theme('colors.emerald.400');
+    background: theme('colors.emerald.800');
     border-radius: 100%;
     box-shadow: theme('boxShadow.sm');
     left: -20px;
