@@ -12,6 +12,7 @@
     {#each categories as category}
       <a
         class="whitespace-nowrap snap-start"
+        class:selected={$page.params.conference === category}
         href="/{$page.params.sport}/{category.trim()}"
       >
         {category}

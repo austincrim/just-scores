@@ -21,18 +21,15 @@
   })
 </script>
 
-<nav class="self-start px-8 pb-12">
-  <a href="/">&larr; Back</a>
-</nav>
-<main class="w-full max-w-2xl">
+<main class="max-w-md mx-auto mt-24">
   <div class="flex items-center gap-6 text-xl">
-    <div class="text-4xl flex flex-col gap-6 w-full px-12">
-      <div class="flex justify-between items-center">
-        <span class="font-bold flex items-center gap-2">
+    <div class="flex flex-col w-full gap-6 px-12 text-4xl">
+      <div class="flex items-center justify-between">
+        <span class="flex items-center gap-2 font-bold">
           <img
             src={data.game.away_team.logos.small}
             alt="{data.game.away_team.name} logo"
-            class="h-16 w-16 object-cover"
+            class="object-cover w-16 h-16"
           />
           {data.game.away_team.name}
         </span>
@@ -42,12 +39,12 @@
           </span>
         {/if}
       </div>
-      <div class="flex justify-between items-center">
-        <span class="font-bold flex items-center gap-2">
+      <div class="flex items-center justify-between">
+        <span class="flex items-center gap-2 font-bold">
           <img
             src={data.game.home_team.logos.small}
             alt="{data.game.home_team.name} logo"
-            class="h-16 w-16 object-cover"
+            class="object-cover w-16 h-16"
           />
           {data.game.home_team.name}
         </span>
@@ -58,11 +55,15 @@
         {/if}
       </div>
     </div>
-    <span class="font-mono">
-      {data.game.box_score.progress.string}
-    </span>
+    {#if data.game.box_score}
+      <span class="font-mono">
+        {data.game.box_score.progress.string}
+      </span>
+    {/if}
   </div>
-  <div class="flex justify-center mt-16 text-sm">
-    {data.stats.last_play.description}
-  </div>
+  {#if data.stats?.last_play?.description}
+    <div class="flex justify-center mt-16 text-sm">
+      {data.stats.last_play.description}
+    </div>
+  {/if}
 </main>

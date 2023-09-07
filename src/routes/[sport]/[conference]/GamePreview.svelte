@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { page } from '$app/stores'
   import type { NcaaBBEvent, NcaaFBEvent } from '$lib/types'
   import TeamLine from './TeamLine.svelte'
 
@@ -8,7 +9,7 @@
 <a
   class="!no-underline"
   data-sveltekit-preload-data
-  href={`/game/${String(game.id)}`}
+  href={`/${$page.params.sport}/game/${String(game.id)}`}
 >
   <div class="flex items-center justify-between gap-4 p-4 border rounded-md">
     <div class="flex flex-col flex-1 gap-4">

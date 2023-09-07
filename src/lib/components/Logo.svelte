@@ -7,7 +7,7 @@
 <div class="relative font-offbit">
   <span
     aria-hidden="true"
-    class="absolute font-bold top- whitespace-nowrap font-offbit text-emerald-400"
+    class="absolute font-bold whitespace-nowrap font-offbit text-emerald-400"
     class:top-1={type === 'word'}
     class:left-1={type === 'word'}
     class:top-[2px]={type === 'initial'}

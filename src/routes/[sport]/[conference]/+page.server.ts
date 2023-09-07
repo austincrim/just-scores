@@ -1,5 +1,6 @@
 import { PUBLIC_SCORE_API_URL } from '$env/static/public'
 import type { NcaaBBEvent, NcaaFBEvent } from '$lib/types'
+import { error } from '@sveltejs/kit'
 
 export async function load({ params, fetch, setHeaders }) {
   let res = await fetch(
@@ -8,7 +9,10 @@ export async function load({ params, fetch, setHeaders }) {
     }&utc_offset=-21600`
   )
 
-  if (!res.ok) console.error(await res.text())
+  if (!res.ok) {
+    let message = await res.json()
+    throw error(res.status, message)
+  }
 
   let events = await res.json()
   let gamesRes = await fetch(

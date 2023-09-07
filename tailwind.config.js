@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        offbit: 'OffBit Trial',
+        offbit: 'OffBit',
       },
     },
   },

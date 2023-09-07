@@ -1,6 +1,11 @@
 @tailwind base;
 @tailwind components;
 
+@font-face {
+  font-family: 'OffBit';
+  src: url('/fonts/OffBitTrial-Regular.otf');
+}
+
 * {
   border-color: currentColor;
 }
@@ -15,7 +20,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'OffBit Trial';
+  font-family: 'OffBit';
 }
 
 a[href] {
