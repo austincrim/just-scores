@@ -1,12 +1,15 @@
 import { PUBLIC_SCORE_API_URL } from '$env/static/public'
-import type { NcaaBBEvent, NcaaFBEvent } from '$lib/types'
+import type { NFLEvent, NcaaBBEvent, NcaaFBEvent } from '$lib/types'
 import { error } from '@sveltejs/kit'
 
-export async function load({ params, fetch, setHeaders }) {
+export async function load({ params, fetch, setHeaders, parent }) {
+  const { leagues } = await parent()
+  if (leagues && leagues.length > 0) {
+    return
+  }
+
   let res = await fetch(
-    `${PUBLIC_SCORE_API_URL}/${params.sport}/schedule?conference=${
-      params.conference ?? 'Top%2025'
-    }&utc_offset=-21600`
+    `${PUBLIC_SCORE_API_URL}/${params.sport}/schedule?utc_offset=-21600`
   )
 
   if (!res.ok) {
@@ -21,8 +24,7 @@ export async function load({ params, fetch, setHeaders }) {
     }/events?id.in=${events.current_group.event_ids.join(',')}`
   )
 
-  let games: NcaaBBEvent[] | NcaaFBEvent[] = await gamesRes.json()
-
+  let games: NFLEvent[] = await gamesRes.json()
   setHeaders({
     'Cache-Control': 's-maxage=10',
   })

@@ -7,14 +7,16 @@ type League = {
 }
 
 export async function load({ fetch, params }) {
-  console.log(`${PUBLIC_SCORE_API_URL}/${params.sport}/events/conferences`)
   const res = await fetch(
     `${PUBLIC_SCORE_API_URL}/${params.sport}/events/conferences`
   )
 
   if (!res.ok) {
-    console.error(`from: ${import.meta.url}`, await res.json())
-    throw error(res.status)
+    if (res.status === 404) {
+      return { leagues: null }
+    } else {
+      throw error(res.status, await res.json())
+    }
   }
 
   let leagues: League[] = await res.json()

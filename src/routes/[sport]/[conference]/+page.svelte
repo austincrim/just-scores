@@ -2,7 +2,7 @@
   import { onMount } from 'svelte'
   import { beforeNavigate, invalidateAll } from '$app/navigation'
   import { navigating } from '$app/stores'
-  import GamePreview from './GamePreview.svelte'
+  import GamePreview from '../../../lib/components/GamePreview.svelte'
 
   export let data
 

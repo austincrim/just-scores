@@ -80,6 +80,57 @@ export type NcaaBBEvent = {
   tournament_name: null
 }
 
+export type NFLEvent = {
+  bowl: null
+  important: null
+  location: string
+  season_week: string
+  stadium: string
+  total_quarters: null
+  colours: Colours
+  has_play_by_play_records: boolean
+  stubhub_url: null
+  week: number
+  home_ranking: null
+  away_ranking: null
+  id: number
+  event_status: string
+  game_date: string
+  game_type: string
+  game_description: null
+  tba: boolean
+  updated_at: string
+  bet_works_id: null
+  betradar_id: string
+  top_match: null
+  status: string
+  api_uri: string
+  resource_uri: string
+  away_team: Team
+  home_team: Team
+  red_zone: boolean
+  display_fpi: boolean
+  league: League
+  preview: string
+  preview_data: PreviewData
+  event_details: EventDetail[]
+  tv_listings_by_country_code: TvListingsByCountryCode
+  has_team_twitter_handles: boolean
+  standings: null
+  box_score: BoxScore
+  odd: Odd
+  subscribable_alerts: SubscribableAlert[]
+}
+
+export type Away = {
+  score: number
+}
+
+export type CA = {
+  short_name: string
+  long_name: string
+}
+
 export type Team = {
   colour_1: string
   colour_2: string
