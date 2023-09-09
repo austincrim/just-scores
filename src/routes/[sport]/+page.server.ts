@@ -1,11 +1,11 @@
 import { PUBLIC_SCORE_API_URL } from '$env/static/public'
 import type { NFLEvent, NcaaBBEvent, NcaaFBEvent } from '$lib/types'
-import { error } from '@sveltejs/kit'
+import { error, redirect } from '@sveltejs/kit'
 
 export async function load({ params, fetch, setHeaders, parent }) {
   const { leagues } = await parent()
   if (leagues && leagues.length > 0) {
-    return
+    throw redirect(301, `${params.sport}/Top 25`)
   }
 
   let res = await fetch(
@@ -25,6 +25,7 @@ export async function load({ params, fetch, setHeaders, parent }) {
   )
 
   let games: NFLEvent[] = await gamesRes.json()
+  console.log(games[0].stadium)
   setHeaders({
     'Cache-Control': 's-maxage=10',
   })

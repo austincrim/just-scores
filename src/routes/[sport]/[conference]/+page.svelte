@@ -36,25 +36,8 @@
     {#if i === 0 || currentGameDate !== previousGameDate}
       <span class="mt-4 font-bold">{currentGameDate}</span>
     {/if}
-    <li
-      class:active={game.status === 'in_progress'}
-      class="relative flex flex-col gap-2"
-    >
+    <li class="relative flex flex-col gap-2">
       <GamePreview {game} />
     </li>
   {/each}
 </ol>
-
-<style>
-  .active::before {
-    content: '';
-    position: absolute;
-    height: 10px;
-    width: 10px;
-    background: theme('colors.emerald.800');
-    border-radius: 100%;
-    box-shadow: theme('boxShadow.sm');
-    left: -20px;
-    top: calc(50% - 5px);
-  }
-</style>

@@ -1,19 +1,26 @@
 <script lang="ts">
-  import type { Team } from '$lib/types'
+  import type { NFLEvent, NcaaBBEvent, NcaaFBEvent, Team } from '$lib/types'
 
-  export let team: Team & { ranking: number; score: number }
+  export let team: Team
+  export let game: NcaaFBEvent | NcaaBBEvent | NFLEvent
+  export let type: 'home' | 'away'
+
+  const score = game.box_score?.score[type].score
+  const ranking = game[`${type}_ranking`]
 </script>
 
-<div class="flex justify-between items-center gap-1">
+<div class="flex items-center justify-between gap-1">
   <div class="flex items-center gap-1">
-    <img src={team.logos.large} alt="{team.full_name} logo" class="h-6 w-6" />
-    {#if team.ranking}
-      <span class="text-xs font-bold">{team.ranking}</span>
+    <img src={team.logos.large} alt="{team.full_name} logo" class="w-6 h-6" />
+    {#if ranking}
+      <span class="text-xs font-bold">{ranking}</span>
     {/if}
     <span>{team.name}</span>
   </div>
 
-  {#if team.score}
-    <span class="font-bold">{team.score}</span>
+  {#if score}
+    <span class="font-bold">{score}</span>
+  {:else if game.status !== 'pre_game'}
+    <span class="font-bold">0</span>
   {/if}
 </div>

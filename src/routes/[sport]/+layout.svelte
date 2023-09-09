@@ -3,9 +3,8 @@
 
   export let data
 
-  let allConferences =
-    data.leagues && data.leagues.flatMap((l) => l.conferences)
-  let categories = allConferences && allConferences.splice(0, 2)
+  $: allConferences = data.leagues && data.leagues.flatMap((l) => l.conferences)
+  $: categories = allConferences && allConferences.splice(0, 2)
 </script>
 
 {#if allConferences && categories}

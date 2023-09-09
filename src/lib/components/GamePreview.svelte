@@ -8,25 +8,14 @@
 
 <a
   class="!no-underline"
+  class:active={game.status === 'in_progress'}
   data-sveltekit-preload-data
-  href={`/${$page.params.sport}/game/${String(game.id)}`}
+  href={`/${$page.params.sport}/game/${game.id}`}
 >
   <div class="flex items-center justify-between gap-4 p-4 border rounded-md">
     <div class="flex flex-col flex-1 gap-4">
-      <TeamLine
-        team={{
-          ...game.away_team,
-          ranking: game.away_ranking,
-          score: game.box_score?.score.away.score,
-        }}
-      />
-      <TeamLine
-        team={{
-          ...game.home_team,
-          ranking: game.home_ranking,
-          score: game.box_score?.score.home.score,
-        }}
-      />
+      <TeamLine team={game.away_team} type="away" {game} />
+      <TeamLine team={game.home_team} type="home" {game} />
     </div>
     <div class="flex flex-col items-center gap-1 w-[10ch]">
       {#if game.status !== 'pre_game'}
@@ -39,10 +28,24 @@
         </span>
       {/if}
       {#if game.tv_listings_by_country_code?.us}
-        <span class="text-sm text-gray-700">
+        <span class="text-sm text-center text-gray-700">
           {game.tv_listings_by_country_code['us'][0].long_name}
         </span>
       {/if}
     </div>
   </div>
 </a>
+
+<style>
+  .active::before {
+    content: '';
+    position: absolute;
+    height: 10px;
+    width: 10px;
+    background: theme('colors.emerald.800');
+    border-radius: 100%;
+    box-shadow: theme('boxShadow.sm');
+    left: -20px;
+    top: calc(50% - 5px);
+  }
+</style>
