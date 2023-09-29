@@ -1,17 +1,35 @@
 <script>
+  import { page } from '$app/stores'
   import Logo from '$lib/components/Logo.svelte'
   import '../app.css'
+
+  $: route = $page.url.pathname
 </script>
 
-<nav class="flex items-center justify-between gap-4 px-3 mt-4 text-xl">
-  <a href="/" class="text-4xl !no-underline">
+<header class="flex items-center justify-center gap-4 px-4 mt-8 text-xl">
+  <a href="/" class="text-6xl !no-underline">
     <Logo type="initial" />
   </a>
-  <span class="flex gap-3">
-    <a href="/nfl">NFL</a>
-    <a href="/ncaaf">NCAA FB</a>
-    <a href="/ncaab">NCAA BB</a>
-  </span>
+</header>
+<div class="max-w-xl pb-24 mx-auto">
+  <slot />
+</div>
+<nav
+  class="fixed bottom-0 grid w-full grid-cols-3 p-6 border-y bg-emerald-200/50 backdrop-blur"
+>
+  <a class="text-center" class:active={route.includes('/nfl')} href="/nfl">
+    NFL
+  </a>
+  <a class="text-center" class:active={route.includes('/ncaaf')} href="/ncaaf">
+    NCAA FB
+  </a>
+  <a class="text-center" class:active={route.includes('/ncaab')} href="/ncaab">
+    NCAA BB
+  </a>
 </nav>
-<slot />
-<div class="h-12" />
+
+<style>
+  .active {
+    font-weight: theme('fontWeight.bold');
+  }
+</style>

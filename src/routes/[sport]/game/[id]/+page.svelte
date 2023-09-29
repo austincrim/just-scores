@@ -3,7 +3,6 @@
   import { onMount } from 'svelte'
 
   export let data
-  console.log({ data })
 
   let invalidating: undefined | Promise<void>
   onMount(() => {
@@ -23,8 +22,8 @@
 </script>
 
 <main class="max-w-lg mx-auto mt-24">
-  <div class="flex items-center gap-6 text-xl">
-    <div class="flex flex-col w-full gap-6 px-12">
+  <div class="flex items-center gap-3 text-xl">
+    <div class="flex flex-col w-full gap-2 px-12">
       <div class="flex items-center justify-between">
         <span class="flex items-center justify-between gap-2 font-bold">
           <img
@@ -45,7 +44,7 @@
           <img
             src={data.game.home_team.logos.small}
             alt="{data.game.home_team.name} logo"
-            class="object-cover w-12 h-16"
+            class="object-cover w-12 h-12"
           />
           {data.game.home_team.name}
         </span>

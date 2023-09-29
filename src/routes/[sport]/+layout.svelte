@@ -21,7 +21,7 @@
       {/each}
     </div>
     <div
-      class="relative flex w-screen py-4 overflow-x-auto snap-x snap-mandatory"
+      class="relative flex w-full py-4 overflow-x-auto snap-x snap-mandatory"
     >
       {#each allConferences as conference}
         <a

@@ -1,31 +1,13 @@
 <script lang="ts">
-  import { onMount } from 'svelte'
-  import { beforeNavigate, invalidateAll } from '$app/navigation'
   import { navigating } from '$app/stores'
   import GamePreview from '$lib/components/GamePreview.svelte'
 
   export let data
-
-  let invalidating: undefined | Promise<void>
-  onMount(() => {
-    let interval: number | undefined
-    interval = setInterval(() => {
-      invalidating = invalidateAll()
-    }, 5000)
-
-    return () => {
-      clearInterval(interval)
-    }
-  })
-
-  beforeNavigate(async () => {
-    if (invalidating) await invalidating
-  })
 </script>
 
 {#if !data.leagues}
   <ol
-    class="flex flex-col w-full max-w-xl gap-6 px-12 mx-auto mt-16"
+    class="flex flex-col w-full gap-6 px-12 mx-auto mt-16"
     class:opacity-50={$navigating}
   >
     {#each data.games as game, i}

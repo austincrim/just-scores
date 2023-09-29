@@ -25,7 +25,6 @@ export async function load({ params, fetch, setHeaders, parent }) {
   )
 
   let games: NFLEvent[] = await gamesRes.json()
-  console.log(games[0].stadium)
   setHeaders({
     'Cache-Control': 's-maxage=10',
   })
