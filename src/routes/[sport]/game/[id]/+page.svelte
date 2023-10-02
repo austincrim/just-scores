@@ -19,11 +19,13 @@
   beforeNavigate(async () => {
     if (invalidating) await invalidating
   })
+
+  console.log(data.stats)
 </script>
 
-<main class="max-w-lg mx-auto mt-24">
-  <div class="flex items-center gap-3 text-xl">
-    <div class="flex flex-col w-full gap-2 px-12">
+<main class="px-4 mx-auto mt-24">
+  <div class="flex items-center gap-12 text-xl">
+    <div class="flex flex-col w-full gap-2">
       <div class="flex items-center justify-between">
         <span class="flex items-center justify-between gap-2 font-bold">
           <img
@@ -61,9 +63,32 @@
       </span>
     {/if}
   </div>
-  {#if data.stats?.last_play?.description}
-    <div class="flex justify-center mt-16 text-sm">
-      {data.stats.last_play.description}
+  <section>
+    {#if data.stats?.box_score?.last_play.details}
+      <div class="mt-12 text-sm">
+        <h2 class="text-lg">Last Play</h2>
+        <p class="mt-2">
+          {data.stats?.box_score?.last_play.details}
+        </p>
+      </div>
+    {/if}
+    <div class="flex flex-col gap-6 mt-12 text-xs">
+      {#if data.stats?.box_score?.scoring_summary}
+        <h2 class="text-xl">Scoring Summary</h2>
+        {#each data.stats?.box_score?.scoring_summary as summary}
+          <span class="flex items-center gap-2">
+            {#if summary.scorer?.headshots?.small}
+              <img
+                class="object-cover w-8 h-8 rounded-full"
+                src={summary.scorer?.headshots?.small}
+              />
+            {:else}
+              <div />
+            {/if}
+            <p>{summary.summary_text}</p>
+          </span>
+        {/each}
+      {/if}
     </div>
-  {/if}
+  </section>
 </main>

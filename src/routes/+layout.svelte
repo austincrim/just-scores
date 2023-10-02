@@ -15,7 +15,7 @@
   <slot />
 </div>
 <nav
-  class="fixed bottom-0 grid w-full grid-cols-3 p-6 border-y bg-emerald-200/50 backdrop-blur"
+  class="fixed bottom-0 grid w-full grid-cols-3 px-6 pt-6 border-y bg-emerald-200/50 backdrop-blur"
 >
   <a class="text-center" class:active={route.includes('/nfl')} href="/nfl">
     NFL
@@ -29,6 +29,9 @@
 </nav>
 
 <style>
+  nav {
+    padding-bottom: max(env(safe-area-inset-bottom), 1.5rem);
+  }
   .active {
     font-weight: theme('fontWeight.bold');
   }
