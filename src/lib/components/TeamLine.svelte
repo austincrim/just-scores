@@ -5,8 +5,8 @@
   export let game: NcaaFBEvent | NcaaBBEvent | NFLEvent
   export let type: 'home' | 'away'
 
-  const score = game.box_score?.score[type].score
-  const ranking = game[`${type}_ranking`]
+  $: score = game.box_score?.score[type].score
+  $: ranking = game[`${type}_ranking`]
 </script>
 
 <div class="flex items-center justify-between gap-1">

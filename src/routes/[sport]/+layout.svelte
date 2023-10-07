@@ -1,7 +1,14 @@
 <script lang="ts">
+  import { preloadData } from '$app/navigation'
   import { page } from '$app/stores'
+  import { onMount } from 'svelte'
 
   export let data
+
+  onMount(async () => {
+    let hrefs = Array.from(document.querySelectorAll('a[href]'))
+    await Promise.all(hrefs.map((h) => preloadData(h)))
+  })
 
   $: allConferences = data.leagues && data.leagues.flatMap((l) => l.conferences)
   $: categories = allConferences && allConferences.splice(0, 2)
