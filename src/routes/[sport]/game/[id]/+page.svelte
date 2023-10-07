@@ -19,11 +19,9 @@
   beforeNavigate(async () => {
     if (invalidating) await invalidating
   })
-
-  console.log(data.stats)
 </script>
 
-<main class="px-4 mx-auto mt-24">
+<main class="px-4 mx-auto mt-16">
   <div class="flex items-center gap-12 text-xl">
     <div class="flex flex-col w-full gap-2">
       <div class="flex items-center justify-between">
@@ -33,7 +31,10 @@
             alt="{data.game.away_team.name} logo"
             class="object-cover w-12 h-12"
           />
-          {data.game.away_team.name}
+          {#if data.game.away_ranking}
+            <span class="text-sm">{data.game.away_ranking}</span>
+          {/if}
+          <span>{data.game.away_team.name}</span>
         </span>
         {#if data.game.status !== 'pre_game'}
           <span class="tabular-nums">
@@ -48,7 +49,10 @@
             alt="{data.game.home_team.name} logo"
             class="object-cover w-12 h-12"
           />
-          {data.game.home_team.name}
+          {#if data.game.home_ranking}
+            <span class="text-sm">{data.game.home_ranking}</span>
+          {/if}
+          <span>{data.game.home_team.name}</span>
         </span>
         {#if data.game.status !== 'pre_game'}
           <span class="tabular-nums">
@@ -61,10 +65,23 @@
       <span class="font-mono">
         {data.game.box_score.progress.string}
       </span>
+    {:else}
+      <div class="flex flex-col items-center gap-1">
+        <span class=" whitespace-nowrap">
+          {new Date(data.game.game_date).toLocaleTimeString(undefined, {
+            timeStyle: 'short',
+          })}
+        </span>
+        {#if data.game.tv_listings_by_country_code?.us}
+          <span>
+            {data.game.tv_listings_by_country_code['us'][0].long_name}
+          </span>
+        {/if}
+      </div>
     {/if}
   </div>
   <section>
-    {#if data.stats?.box_score?.last_play.details}
+    {#if data.stats?.box_score?.last_play?.details}
       <div class="mt-12 text-sm">
         <h2 class="text-lg">Last Play</h2>
         <p class="mt-2">
@@ -81,6 +98,7 @@
               <img
                 class="object-cover w-8 h-8 rounded-full"
                 src={summary.scorer?.headshots?.small}
+                alt="scorer name"
               />
             {:else}
               <div />
