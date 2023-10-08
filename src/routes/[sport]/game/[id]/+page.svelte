@@ -4,21 +4,21 @@
 
   export let data
 
-  let invalidating: undefined | Promise<void>
-  onMount(() => {
-    let interval: number | undefined
-    interval = setInterval(() => {
-      invalidating = invalidateAll()
-    }, 5000)
+  // let invalidating: undefined | Promise<void>
+  // onMount(() => {
+  //   let interval: number | undefined
+  //   interval = setInterval(() => {
+  //     invalidating = invalidateAll()
+  //   }, 5000)
 
-    return () => {
-      clearInterval(interval)
-    }
-  })
+  //   return () => {
+  //     clearInterval(interval)
+  //   }
+  // })
 
-  beforeNavigate(async () => {
-    if (invalidating) await invalidating
-  })
+  // beforeNavigate(async () => {
+  //   if (invalidating) await invalidating
+  // })
 </script>
 
 <main class="px-4 mx-auto mt-16">
@@ -93,7 +93,10 @@
       {#if data.stats?.box_score?.scoring_summary}
         <h2 class="text-xl">Scoring Summary</h2>
         {#each data.stats?.box_score?.scoring_summary as summary}
-          <span class="flex items-center gap-2">
+          <span
+            class="flex items-center gap-2 pl-2 border-l-[3px] border-[--team-color]"
+            style="--team-color: #{summary.scorer?.teams[0].colour_1}"
+          >
             {#if summary.scorer?.headshots?.small}
               <img
                 class="object-cover w-8 h-8 rounded-full"

@@ -12,7 +12,7 @@
   data-sveltekit-preload-data
   href={`/${$page.params.sport}/game/${game.id}`}
 >
-  <div class="flex items-center justify-between gap-4 p-4 border rounded-md">
+  <div class="flex items-center justify-between gap-4 p-4 border shadow-brutal">
     <div class="flex flex-col flex-1 gap-4">
       <TeamLine team={game.away_team} type="away" {game} />
       <TeamLine team={game.home_team} type="home" {game} />
@@ -47,5 +47,9 @@
     box-shadow: theme('boxShadow.sm');
     left: -20px;
     top: calc(50% - 5px);
+  }
+
+  .shadow-brutal {
+    box-shadow: 5px 5px 0px theme('colors.zinc.900');
   }
 </style>
