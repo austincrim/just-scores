@@ -7,7 +7,7 @@
 
 {#if !data.leagues}
   <ol
-    class="flex flex-col w-full gap-6 px-12 mx-auto mt-16"
+    class="flex flex-col w-full gap-6 px-12 mx-auto mt-12"
     class:opacity-50={$navigating}
   >
     {#each data.games as game, i}

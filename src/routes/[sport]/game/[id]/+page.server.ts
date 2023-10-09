@@ -15,7 +15,7 @@ export async function load({ params, fetch }) {
   if (!res.ok) {
     throw error(res.status)
   }
-  let game: NcaaBBEvent | NcaaFBEvent = await res.json()
+  let game: NcaaBBEvent | NcaaFBEvent | NFLEvent = await res.json()
 
   let statsRes = await fetch(`${PUBLIC_SCORE_API_URL}${game.api_uri}`)
   if (!statsRes.ok) console.error(await statsRes.text())

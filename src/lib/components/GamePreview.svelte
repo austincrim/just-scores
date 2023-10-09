@@ -1,9 +1,9 @@
 <script lang="ts">
   import { page } from '$app/stores'
-  import type { NcaaBBEvent, NcaaFBEvent } from '$lib/types'
+  import type { NFLEvent, NcaaBBEvent, NcaaFBEvent } from '$lib/types'
   import TeamLine from './TeamLine.svelte'
 
-  export let game: NcaaBBEvent | NcaaFBEvent
+  export let game: NcaaBBEvent | NcaaFBEvent | NFLEvent
 </script>
 
 <a
@@ -42,7 +42,7 @@
     position: absolute;
     height: 10px;
     width: 10px;
-    background: theme('colors.emerald.800');
+    background: theme('colors.amber.800');
     border-radius: 100%;
     box-shadow: theme('boxShadow.sm');
     left: -20px;

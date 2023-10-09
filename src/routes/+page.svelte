@@ -4,7 +4,7 @@
 
 <main class="flex flex-col items-center gap-12 mt-16">
   <h1 class="text-center text-7xl">
-    <span class="text-emerald-700">Welcome to</span>
+    <span class="text-amber-600">Welcome to</span>
     <Logo />
   </h1>
 

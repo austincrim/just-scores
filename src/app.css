@@ -29,11 +29,11 @@ a[href] {
   transition: color 100ms ease-out;
 }
 a[href]:hover {
-  color: theme('colors.emerald.700');
+  color: theme('colors.amber.800');
 }
 
 ::selection {
-  background-color: theme('colors.emerald.500');
+  background-color: theme('colors.amber.500');
 }
 
 @tailwind utilities;

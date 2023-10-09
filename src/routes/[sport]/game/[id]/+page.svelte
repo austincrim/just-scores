@@ -1,27 +1,35 @@
 <script lang="ts">
   import { beforeNavigate, invalidateAll } from '$app/navigation'
   import { onMount } from 'svelte'
+  import FootballScore from './FootballScore.svelte'
+  import type { NFLEvent, NcaaFBEvent } from '$lib/types'
 
   export let data
 
-  // let invalidating: undefined | Promise<void>
-  // onMount(() => {
-  //   let interval: number | undefined
-  //   interval = setInterval(() => {
-  //     invalidating = invalidateAll()
-  //   }, 5000)
+  function isFootballEvent(
+    game: typeof data.game
+  ): game is NcaaFBEvent | NFLEvent {
+    return game.api_uri.includes('nfl') || game.api_uri.includes('ncaafb')
+  }
 
-  //   return () => {
-  //     clearInterval(interval)
-  //   }
-  // })
+  let invalidating: undefined | Promise<void>
+  onMount(() => {
+    let interval: number | undefined
+    interval = setInterval(() => {
+      invalidating = invalidateAll()
+    }, 5000)
 
-  // beforeNavigate(async () => {
-  //   if (invalidating) await invalidating
-  // })
+    return () => {
+      clearInterval(interval)
+    }
+  })
+
+  beforeNavigate(async () => {
+    if (invalidating) await invalidating
+  })
 </script>
 
-<main class="px-4 mx-auto mt-16">
+<main class="px-4 mx-auto mt-12">
   <div class="flex items-center gap-12 text-xl">
     <div class="flex flex-col w-full gap-2">
       <div class="flex items-center justify-between">
@@ -81,35 +89,8 @@
     {/if}
   </div>
   <section>
-    {#if data.stats?.box_score?.last_play?.details}
-      <div class="mt-12 text-sm">
-        <h2 class="text-lg">Last Play</h2>
-        <p class="mt-2">
-          {data.stats?.box_score?.last_play.details}
-        </p>
-      </div>
+    {#if isFootballEvent(data.game)}
+      <FootballScore game={data.game} />
     {/if}
-    <div class="flex flex-col gap-6 mt-12 text-xs">
-      {#if data.stats?.box_score?.scoring_summary}
-        <h2 class="text-xl">Scoring Summary</h2>
-        {#each data.stats?.box_score?.scoring_summary as summary}
-          <span
-            class="flex items-center gap-2 pl-2 border-l-[3px] border-[--team-color]"
-            style="--team-color: #{summary.scorer?.teams[0].colour_1}"
-          >
-            {#if summary.scorer?.headshots?.small}
-              <img
-                class="object-cover w-8 h-8 rounded-full"
-                src={summary.scorer?.headshots?.small}
-                alt="scorer name"
-              />
-            {:else}
-              <div />
-            {/if}
-            <p>{summary.summary_text}</p>
-          </span>
-        {/each}
-      {/if}
-    </div>
   </section>
 </main>
