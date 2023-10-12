@@ -29,9 +29,9 @@
   })
 </script>
 
-<main class="px-4 mx-auto mt-12">
+<main class="px-4 mx-auto mt-14">
   <div class="flex items-center gap-12 text-xl">
-    <div class="flex flex-col w-full gap-2">
+    <div class="flex flex-col w-full gap-8">
       <div class="flex items-center justify-between">
         <span class="flex items-center justify-between gap-2 font-bold">
           <img
@@ -42,7 +42,7 @@
           {#if data.game.away_ranking}
             <span class="text-sm">{data.game.away_ranking}</span>
           {/if}
-          <span>{data.game.away_team.name}</span>
+          <span class="text-2xl">{data.game.away_team.name}</span>
         </span>
         {#if data.game.status !== 'pre_game'}
           <span class="tabular-nums">
@@ -60,7 +60,7 @@
           {#if data.game.home_ranking}
             <span class="text-sm">{data.game.home_ranking}</span>
           {/if}
-          <span>{data.game.home_team.name}</span>
+          <span class="text-2xl">{data.game.home_team.name}</span>
         </span>
         {#if data.game.status !== 'pre_game'}
           <span class="tabular-nums">
@@ -75,13 +75,13 @@
       </span>
     {:else}
       <div class="flex flex-col items-center gap-1">
-        <span class=" whitespace-nowrap">
+        <span class="whitespace-nowrap">
           {new Date(data.game.game_date).toLocaleTimeString(undefined, {
             timeStyle: 'short',
           })}
         </span>
         {#if data.game.tv_listings_by_country_code?.us}
-          <span>
+          <span class="text-base text-center">
             {data.game.tv_listings_by_country_code['us'][0].long_name}
           </span>
         {/if}

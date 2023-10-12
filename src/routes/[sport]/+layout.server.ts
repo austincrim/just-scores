@@ -7,20 +7,34 @@ type League = {
 }
 
 export async function load({ fetch, params }) {
-  const res = await fetch(
-    `${PUBLIC_SCORE_API_URL}/${params.sport}/events/conferences`
-  )
+  let [leaguesRes, scheduleRes] = await Promise.all([
+    fetch(`${PUBLIC_SCORE_API_URL}/${params.sport}/events/conferences`),
+    fetch(`${PUBLIC_SCORE_API_URL}/${params.sport}/schedule?utc_offset=-21600`),
+  ])
 
-  if (!res.ok) {
-    if (res.status === 404) {
-      return { leagues: null }
+  let leagues: League[] | null = null
+  if (!leaguesRes.ok) {
+    if (leaguesRes.status === 404) {
+      leagues = null
     } else {
-      throw error(res.status, await res.json())
+      let message = await leaguesRes.json()
+      console.error(message)
+      throw error(leaguesRes.status, message)
     }
+  } else {
+    leagues = await leaguesRes.json()
   }
 
-  let leagues: League[] = await res.json()
+  if (!scheduleRes.ok) {
+    let message = await scheduleRes.json()
+    console.error(message)
+    throw error(scheduleRes.status, message)
+  }
+
+  let events = await scheduleRes.json()
+
   return {
     leagues,
+    events,
   }
 }

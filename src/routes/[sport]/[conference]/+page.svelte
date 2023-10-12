@@ -1,6 +1,6 @@
 <script lang="ts">
   import { navigating } from '$app/stores'
-  import GamePreview from '../../../lib/components/GamePreview.svelte'
+  import GamePreview from '$lib/components/GamePreview.svelte'
 
   export let data
 </script>

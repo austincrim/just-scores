@@ -50,7 +50,7 @@
   <slot />
 </div>
 <nav
-  class="fixed bottom-0 grid w-full grid-cols-3 px-6 pt-6 border-y bg-stone-300/50 text-stone-900 backdrop-blur"
+  class="fixed bottom-0 grid w-full grid-cols-3 px-6 pt-6 border-y bg-amber-100/50 text-amber-900 backdrop-blur"
 >
   <a class="text-center" class:active={route.includes('/nfl')} href="/nfl">
     NFL

@@ -7,6 +7,6 @@
   <p>Something went wrong.</p>
   <details class="font-mono">
     <summary>Developer details</summary>
-    {$page.error?.message}
+    <pre>{JSON.stringify($page.error, null, 2)}</pre>
   </details>
 </main>
