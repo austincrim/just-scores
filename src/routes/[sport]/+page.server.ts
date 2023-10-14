@@ -1,16 +1,12 @@
 import { PUBLIC_SCORE_API_URL } from '$env/static/public'
-import { redirect } from '@sveltejs/kit'
 import type { NFLEvent } from '$lib/types'
 
 export async function load({ params, fetch, setHeaders, parent, url }) {
-  const { leagues, events } = await parent()
-  if (leagues && leagues.length > 0) {
-    throw redirect(301, `${params.sport}/Top 25`)
-  }
+  const { events } = await parent()
 
   const weekId = url.searchParams.get('w')
   const weekToFetch = weekId
-    ? events.current_season.find((w) => w.id === weekId)
+    ? events.current_season.find((w: any) => w.id === weekId)
     : events.current_group
 
   let gamesRes = await fetch(

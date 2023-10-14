@@ -9,7 +9,7 @@
   function isFootballEvent(
     game: typeof data.game
   ): game is NcaaFBEvent | NFLEvent {
-    return game.api_uri.includes('nfl') || game.api_uri.includes('ncaafb')
+    return game.api_uri.includes('nfl') || game.api_uri.includes('ncaaf')
   }
 
   let invalidating: undefined | Promise<void>

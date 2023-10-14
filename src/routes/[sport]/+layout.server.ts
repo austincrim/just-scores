@@ -6,10 +6,15 @@ type League = {
   conferences: string[]
 }
 
-export async function load({ fetch, params }) {
+export async function load({ fetch, params, url }) {
+  let conference = url.searchParams.get('c')
   let [leaguesRes, scheduleRes] = await Promise.all([
     fetch(`${PUBLIC_SCORE_API_URL}/${params.sport}/events/conferences`),
-    fetch(`${PUBLIC_SCORE_API_URL}/${params.sport}/schedule?utc_offset=-21600`),
+    fetch(
+      `${PUBLIC_SCORE_API_URL}/${
+        params.sport
+      }/schedule?utc_offset=-21600&conference=${conference ?? ''}`
+    ),
   ])
 
   let leagues: League[] | null = null
