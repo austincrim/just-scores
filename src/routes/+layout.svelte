@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { page } from '$app/stores'
+  import { navigating, page } from '$app/stores'
   // import { goto } from '$app/navigation'
   // import { onMount } from 'svelte'
   import Logo from '$lib/components/Logo.svelte'
@@ -41,8 +41,10 @@
   // })
 </script>
 
-<header class="flex items-center justify-center gap-4 px-4 mt-8 text-xl">
-  <a href="/" class="text-6xl !no-underline">
+<header
+  class="relative flex flex-col items-center justify-center gap-4 px-4 mt-8 text-xl"
+>
+  <a href="/" class="text-6xl !no-underline" class:animate-pulse={$navigating}>
     <Logo type="initial" />
   </a>
 </header>
@@ -50,7 +52,7 @@
   <slot />
 </div>
 <nav
-  class="fixed bottom-0 grid w-full grid-cols-3 px-6 pt-6 border-y bg-amber-100/50 text-amber-900 backdrop-blur"
+  class="fixed bottom-0 grid w-full grid-cols-3 gap-8 px-6 pt-3 text-xl border-y bg-amber-100/50 text-amber-900 backdrop-blur"
 >
   <a class="text-center" class:active={route.includes('/nfl')} href="/nfl">
     NFL
@@ -65,7 +67,7 @@
 
 <style>
   nav {
-    padding-bottom: max(env(safe-area-inset-bottom), 1.5rem);
+    padding-bottom: max(env(safe-area-inset-bottom), 1rem);
   }
   .active {
     font-weight: theme('fontWeight.bold');

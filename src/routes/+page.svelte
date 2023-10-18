@@ -8,5 +8,8 @@
     <Logo />
   </h1>
 
-  <h2 class="font-sans text-xl">The app that shows scores, nothing else.</h2>
+  <div class="px-10 space-y-2 text-lg text-center text-amber-950">
+    <h2 class="font-sans">The app that shows scores, nothing else.</h2>
+    <p>For the best experience, add this site to your home screen.</p>
+  </div>
 </main>
