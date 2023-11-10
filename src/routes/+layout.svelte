@@ -57,10 +57,18 @@
   <a class="text-center" class:active={route.includes('/nfl')} href="/nfl">
     NFL
   </a>
-  <a class="text-center" class:active={route.includes('/ncaaf')} href="/ncaaf">
+  <a
+    class="text-center"
+    class:active={route.includes('/ncaaf')}
+    href="/ncaaf?c=Top+25"
+  >
     NCAA FB
   </a>
-  <a class="text-center" class:active={route.includes('/ncaab')} href="/ncaab">
+  <a
+    class="text-center"
+    class:active={route.includes('/ncaab')}
+    href="/ncaab?c=Top+25"
+  >
     NCAA BB
   </a>
 </nav>
