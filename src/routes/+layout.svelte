@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { browser } from '$app/environment'
   import { navigating, page } from '$app/stores'
   // import { goto } from '$app/navigation'
   // import { onMount } from 'svelte'
@@ -52,21 +53,25 @@
   <slot />
 </div>
 <nav
-  class="fixed bottom-0 grid w-full grid-cols-3 gap-8 px-6 pt-3 text-xl border-y bg-amber-100/50 text-amber-900 backdrop-blur"
+  class="fixed grid w-[95vw] grid-cols-3 gap-8 px-6 pt-3 text-xl -translate-x-1/2 border shadow-2xl rounded-2xl bottom-4 left-1/2 bg-white/40 text-stone-900 backdrop-blur"
 >
-  <a class="text-center" class:active={route.includes('/nfl')} href="/nfl">
+  <a
+    class="text-center !no-underline whitespace-nowrap"
+    class:active-nav={route.includes('/nfl')}
+    href="/nfl"
+  >
     NFL
   </a>
   <a
-    class="text-center"
-    class:active={route.includes('/ncaaf')}
+    class="text-center !no-underline whitespace-nowrap"
+    class:active-nav={route.includes('/ncaaf')}
     href="/ncaaf?c=Top+25"
   >
     NCAA FB
   </a>
   <a
-    class="text-center"
-    class:active={route.includes('/ncaab')}
+    class="text-center !no-underline whitespace-nowrap"
+    class:active-nav={route.includes('/ncaab')}
     href="/ncaab?c=Top+25"
   >
     NCAA BB
@@ -77,7 +82,7 @@
   nav {
     padding-bottom: max(env(safe-area-inset-bottom), 1rem);
   }
-  .active {
+  .active-nav {
     font-weight: theme('fontWeight.bold');
   }
 </style>

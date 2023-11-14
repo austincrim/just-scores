@@ -1,7 +1,6 @@
 <script lang="ts">
   import { page } from '$app/stores'
   import { query } from '$lib/stores.js'
-  import { onMount } from 'svelte'
 
   export let data
 
@@ -25,12 +24,12 @@
   let weekContainer: HTMLDivElement
   let conferenceContainer: HTMLDivElement
 
-  onMount(() => {
-    if (weekContainer) {
-      let selectedWeek =
-        document.querySelector<HTMLAnchorElement>('.selected-week')
+  $: {
+    if (weekContainer && $page.url) {
+      let currentWeek =
+        document.querySelector<HTMLAnchorElement>('.current-week')
       weekContainer.scrollTo({
-        left: selectedWeek?.offsetLeft! - document.body.clientWidth / 2,
+        left: currentWeek?.offsetLeft! - document.body.clientWidth / 2,
         behavior: 'smooth',
       })
     }
@@ -43,7 +42,7 @@
         behavior: 'smooth',
       })
     }
-  })
+  }
 </script>
 
 <div
