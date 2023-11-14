@@ -42,12 +42,14 @@
       {/if}
       <span
         class:text-amber-700={isFootballEvent(data.game) &&
-          data.game.box_score.team_in_possession.name ===
+          data.game.box_score?.team_in_possession.name ===
             line.team.name}
-        class="text-2xl">{line.team.name}
+        class="text-2xl"
+      >
+        {line.team.name}
       </span>
     </span>
-    {#if data.game.status !== 'pre_game'}
+    {#if line && line.score}
       <span class="tabular-nums">
         {line.score}
       </span>
@@ -58,11 +60,11 @@
 <main class="px-4 mx-auto mt-14">
   <div class="flex items-center gap-12 text-xl">
     <div class="flex flex-col w-full gap-8">
-      {@render teamLine({team: data.game.away_team, score: data.game.box_score.score.away.score, ranking: data.game.away_ranking})}
-      {@render teamLine({team: data.game.home_team, score: data.game.box_score.score.home.score, ranking: data.game.home_ranking})}
+      {@render teamLine({team: data.game.away_team, score: data.game.box_score?.score?.away?.score, ranking: data.game.away_ranking})}
+      {@render teamLine({team: data.game.home_team, score: data.game.box_score?.score?.home?.score, ranking: data.game.home_ranking})}
     </div>
     <div class="text-center">
-      {#if data.game.box_score}
+      {#if data.game.status !== 'pre_game'}
         <span class="font-mono">
           {data.game.box_score.progress.string}
         </span>

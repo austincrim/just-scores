@@ -11,7 +11,7 @@ export function query({ key, value }: { key: string; value: string }) {
   const { subscribe } = derived(page, ($page, set) => {
     const current = new URLSearchParams($page.url.searchParams)
     current.set(key, value)
-    set(`?${current.toString()}`)
+    set(`/${$page.params.sport}?${current.toString()}`)
   })
 
   return {
