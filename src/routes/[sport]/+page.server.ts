@@ -1,5 +1,5 @@
 import { PUBLIC_SCORE_API_URL } from '$env/static/public'
-import type { NFLEvent } from '$lib/types'
+import type { NFLEvent, NcaaFBEvent, NcaaBBEvent } from '$lib/types'
 
 export async function load({ params, fetch, setHeaders, parent, url }) {
   const { events } = await parent()
@@ -15,7 +15,7 @@ export async function load({ params, fetch, setHeaders, parent, url }) {
     }/events?id.in=${weekToFetch.event_ids.join(',')}`
   )
 
-  let games: NFLEvent[] = await gamesRes.json()
+  let games: NFLEvent[] | NcaaBBEvent[] | NcaaFBEvent[] = await gamesRes.json()
   setHeaders({
     'Cache-Control': 's-maxage=10',
   })

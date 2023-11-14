@@ -17,7 +17,7 @@
     let interval: number | undefined
     interval = setInterval(() => {
       invalidating = invalidateAll()
-    }, 5000)
+    }, 10000)
 
     return () => {
       clearInterval(interval)
@@ -29,64 +29,58 @@
   })
 </script>
 
+{#snippet teamLine(line)}
+  <div class="flex items-center justify-between">
+    <span class="flex items-center justify-between gap-2 font-bold">
+      <img
+        src={line.team.logos.small}
+        alt="{line.team.name} logo"
+        class="object-cover w-12 h-12"
+      />
+      {#if line.ranking}
+        <span class="text-sm">{line.ranking}</span>
+      {/if}
+      <span
+        class:text-amber-700={isFootballEvent(data.game) &&
+          data.game.box_score.team_in_possession.name ===
+            line.team.name}
+        class="text-2xl">{line.team.name}
+      </span>
+    </span>
+    {#if data.game.status !== 'pre_game'}
+      <span class="tabular-nums">
+        {line.score}
+      </span>
+    {/if}
+  </div>
+{/snippet}
+
 <main class="px-4 mx-auto mt-14">
   <div class="flex items-center gap-12 text-xl">
     <div class="flex flex-col w-full gap-8">
-      <div class="flex items-center justify-between">
-        <span class="flex items-center justify-between gap-2 font-bold">
-          <img
-            src={data.game.away_team.logos.small}
-            alt="{data.game.away_team.name} logo"
-            class="object-cover w-12 h-12"
-          />
-          {#if data.game.away_ranking}
-            <span class="text-sm">{data.game.away_ranking}</span>
-          {/if}
-          <span class="text-2xl">{data.game.away_team.name}</span>
-        </span>
-        {#if data.game.status !== 'pre_game'}
-          <span class="tabular-nums">
-            {data.game.box_score.score.away.score}
-          </span>
-        {/if}
-      </div>
-      <div class="flex items-center justify-between">
-        <span class="flex items-center gap-2 font-bold">
-          <img
-            src={data.game.home_team.logos.small}
-            alt="{data.game.home_team.name} logo"
-            class="object-cover w-12 h-12"
-          />
-          {#if data.game.home_ranking}
-            <span class="text-sm">{data.game.home_ranking}</span>
-          {/if}
-          <span class="text-2xl">{data.game.home_team.name}</span>
-        </span>
-        {#if data.game.status !== 'pre_game'}
-          <span class="tabular-nums">
-            {data.game.box_score.score.home.score}
-          </span>
-        {/if}
-      </div>
+      {@render teamLine({team: data.game.away_team, score: data.game.box_score.score.away.score, ranking: data.game.away_ranking})}
+      {@render teamLine({team: data.game.home_team, score: data.game.box_score.score.home.score, ranking: data.game.home_ranking})}
     </div>
-    {#if data.game.box_score}
-      <span class="font-mono">
-        {data.game.box_score.progress.string}
-      </span>
-    {:else}
-      <div class="flex flex-col items-center gap-1">
-        <span class="whitespace-nowrap">
-          {new Date(data.game.game_date).toLocaleTimeString(undefined, {
-            timeStyle: 'short',
-          })}
+    <div class="text-center">
+      {#if data.game.box_score}
+        <span class="font-mono">
+          {data.game.box_score.progress.string}
         </span>
-        {#if data.game.tv_listings_by_country_code?.us}
-          <span class="text-base text-center">
-            {data.game.tv_listings_by_country_code['us'][0].long_name}
+      {:else}
+        <div class="flex flex-col items-center gap-1">
+          <span class="whitespace-nowrap">
+            {new Date(data.game.game_date).toLocaleTimeString(undefined, {
+              timeStyle: 'short',
+            })}
           </span>
-        {/if}
-      </div>
-    {/if}
+        </div>
+      {/if}
+      {#if data.game.tv_listings_by_country_code?.us}
+        <span class="text-base text-center">
+          {data.game.tv_listings_by_country_code.us[0].long_name}
+        </span>
+      {/if}
+    </div>
   </div>
   <section>
     {#if isFootballEvent(data.game)}

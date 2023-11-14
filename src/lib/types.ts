@@ -273,10 +273,10 @@ export type Top25_Rankings = {
 }
 
 export type TvListingsByCountryCode = {
-  us: Me[]
+  us: TvListing[]
 }
 
-export type Me = {
+export type TvListing = {
   short_name: string
   long_name: string
 }

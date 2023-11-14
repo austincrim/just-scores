@@ -1,5 +1,6 @@
 @tailwind base;
 @tailwind components;
+@tailwind utilities;
 
 @font-face {
   font-family: 'OffBit';
@@ -35,5 +36,3 @@ a[href]:hover {
 ::selection {
   background-color: theme('colors.amber.500');
 }
-
-@tailwind utilities;

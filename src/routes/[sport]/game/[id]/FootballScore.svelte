@@ -17,7 +17,7 @@
   }
 </script>
 
-{#if game.status === 'in_progress'}
+{#if game.status === 'in_progress' && game.box_score.down}
   <p class="mt-4 font-bold font-offbit">
     {game.box_score.down}{getDownOrdinal(game.box_score.down)} and {game
       .box_score.distance} from {game.box_score.ball_on}
