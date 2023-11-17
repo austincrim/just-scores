@@ -1,12 +1,12 @@
 import { PUBLIC_SCORE_API_URL } from '$env/static/public'
-import { error } from '@sveltejs/kit'
+import { error, redirect } from '@sveltejs/kit'
 
 type League = {
   name: string | undefined
   conferences: string[]
 }
 
-export async function load({ fetch, params, url, setHeaders }) {
+export async function load({ fetch, params, url }) {
   let conference = url.searchParams.get('c')
   let [leaguesRes, scheduleRes] = await Promise.all([
     fetch(`${PUBLIC_SCORE_API_URL}/${params.sport}/events/conferences`),

@@ -1,30 +1,40 @@
 <script lang="ts">
   import { page } from '$app/stores'
-  import { query } from '$lib/stores.js'
+  import type { LayoutData } from './$types'
 
-  export let data
+  let { data } = $props<{ data: LayoutData }>()
 
   const power5 = ['ACC', 'Big 12', 'Big Ten', 'PAC-12', 'SEC']
-  $: conferences =
-    data.leagues &&
+  let conferences = $derived(
     data.leagues
-      .flatMap((l) => l.conferences)
-      .sort((a) => {
-        if (power5.includes(a)) return -1
-        return 0
-      })
-  $: regularSeasonWeeks = data.events.current_season.filter(
-    (w: any) => !w.guid.includes('preseason')
+      ? data.leagues
+          .flatMap((l) => l.conferences)
+          .sort((a) => {
+            if (power5.includes(a)) return -1
+            return 0
+          })
+      : []
   )
-  $: currentWeek = data.events.current_season.find(
-    (w: any) =>
-      new Date(w.start_date) < new Date() && new Date(w.end_date) >= new Date()
+  let regularSeasonWeeks = $derived(
+    data.events?.current_season?.filter(
+      (w: any) => !w.guid.includes('preseason')
+    ) ?? []
   )
+  let currentWeek = $derived(
+    data.events?.current_season?.find(
+      (w: any) =>
+        new Date(w.start_date) < new Date() &&
+        new Date(w.end_date) >= new Date()
+    )
+  )
+
+  let selectedConference = $derived($page.url.searchParams.get('c') ?? 'Top 25')
+  let selectedWeek = $derived($page.url.searchParams.get('w') ?? currentWeek.id)
 
   let weekContainer: HTMLDivElement
   let conferenceContainer: HTMLDivElement
 
-  $: {
+  $effect(() => {
     if (weekContainer && $page.url) {
       let currentWeek =
         document.querySelector<HTMLAnchorElement>('.current-week')
@@ -42,7 +52,7 @@
         behavior: 'smooth',
       })
     }
-  }
+  })
 </script>
 
 <div
@@ -51,7 +61,7 @@
 >
   {#each regularSeasonWeeks as week}
     <a
-      href={query({ key: 'w', value: week.id }).value()}
+      href="?c={selectedConference}&w={week.id}"
       class:current-week={currentWeek?.id === week.id}
       class:selected-week={week.id === $page.url.searchParams.get('w')}
       class="whitespace-nowrap snap-center"
@@ -69,7 +79,7 @@
     >
       {#each conferences as conference}
         <a
-          href={query({ key: 'c', value: conference.trim() }).value()}
+          href="?c={conference.trim()}&w={selectedWeek}"
           class="z-0 whitespace-nowrap snap-center"
           class:selected-conference={$page.url.searchParams.get('c') ===
             conference}
