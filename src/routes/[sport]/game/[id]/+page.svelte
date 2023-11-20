@@ -49,7 +49,7 @@
       {/if}
       <span
         class:text-amber-700={isFootballEvent(data.game) &&
-          data.game.box_score?.team_in_possession.name ===
+          data.game.box_score?.team_in_possession?.name ===
             line.team.name}
         class="text-2xl"
       >

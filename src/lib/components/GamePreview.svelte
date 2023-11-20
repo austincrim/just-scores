@@ -7,17 +7,19 @@
 </script>
 
 <a
-  class="!no-underline"
+  class="!no-underline text-xl"
   class:active={game.status === 'in_progress'}
   data-sveltekit-preload-data
   href={`/${$page.params.sport}/game/${game.id}`}
 >
-  <div class="flex items-center justify-between gap-4 p-4 border shadow-brutal">
-    <div class="flex flex-col flex-1 gap-4">
+  <div
+    class="flex items-center justify-between gap-12 p-6 border shadow-brutal"
+  >
+    <div class="flex flex-col flex-1 gap-6">
       <TeamLine team={game.away_team} type="away" {game} />
       <TeamLine team={game.home_team} type="home" {game} />
     </div>
-    <div class="flex flex-col items-center gap-1 w-[10ch]">
+    <div class="flex flex-col items-center gap-1">
       {#if game.status !== 'pre_game'}
         <span>{game.box_score?.progress.string}</span>
       {:else}

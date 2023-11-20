@@ -6,7 +6,7 @@
 </script>
 
 <ol
-  class="flex flex-col w-full gap-10 px-12 mx-auto mt-8"
+  class="flex flex-col w-full max-w-lg gap-10 px-4 mx-auto mt-8 md:px-12"
   class:opacity-75={$navigating}
 >
   {#each data.games as game, i}
@@ -20,7 +20,7 @@
     {/if}
     <li
       class:active={game.status === 'in_progress'}
-      class="relative flex flex-col gap-2"
+      class="relative flex flex-col w-full gap-2"
     >
       <GamePreview {game} />
     </li>

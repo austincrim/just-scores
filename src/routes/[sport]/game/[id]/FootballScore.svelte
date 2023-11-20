@@ -35,13 +35,19 @@
   {#if game.box_score?.scoring_summary}
     <h2 class="text-xl">Scoring Summary</h2>
     {#each game.box_score?.scoring_summary as summary}
+      {@const logo = summary.scorer.teams[0].logos.small}
       <span
-        class="flex items-center gap-2 pl-2 border-l-[3px] border-[--team-color]"
+        class="relative flex items-center gap-2 pl-2"
         style="--team-color: #{summary.scorer?.teams[0].colour_1}"
       >
-        {#if summary.scorer?.headshots?.small}
+        <img
+          class="absolute object-cover w-8 h-8 -left-1 -bottom-3"
+          src={logo}
+          alt="{summary.team} logo"
+        />
+        {#if summary.scorer?.headshots?.original}
           <img
-            class="object-cover w-8 h-8 rounded-full"
+            class="object-cover w-12 h-12 border-4 border-[var(--team-color)] rounded-full"
             src={summary.scorer?.headshots?.small}
             alt="scorer name"
           />

@@ -45,7 +45,7 @@
 <header
   class="relative flex flex-col items-center justify-center gap-4 px-4 mt-8 text-xl"
 >
-  <a href="/" class="text-6xl !no-underline" class:animate-pulse={$navigating}>
+  <a href="/" class="text-7xl !no-underline" class:animate-pulse={$navigating}>
     <Logo type="initial" />
   </a>
 </header>
@@ -53,7 +53,7 @@
   <slot />
 </div>
 <nav
-  class="fixed grid w-[95vw] grid-cols-3 gap-8 px-6 py-3 text-xl -translate-x-1/2 border shadow-2xl rounded-2xl bottom-4 left-1/2 bg-white/40 text-stone-900 backdrop-blur"
+  class="fixed grid w-[min(95vw,400px)] grid-cols-3 gap-8 px-6 py-3 text-xl -translate-x-1/2 border shadow-2xl rounded-2xl bottom-4 left-1/2 bg-white/40 text-stone-900 backdrop-blur"
 >
   <a
     class="text-center !no-underline whitespace-nowrap"
