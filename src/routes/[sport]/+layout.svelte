@@ -13,19 +13,19 @@
             if (power5.includes(a)) return -1
             return 0
           })
-      : []
+      : [],
   )
   let regularSeasonWeeks = $derived(
     data.events?.current_season?.filter(
-      (w: any) => !w.guid.includes('preseason')
-    ) ?? []
+      (w: any) => !w.guid.includes('preseason'),
+    ) ?? [],
   )
   let currentWeek = $derived(
     data.events?.current_season?.find(
       (w: any) =>
         new Date(w.start_date) < new Date() &&
-        new Date(w.end_date) >= new Date()
-    )
+        new Date(w.end_date) >= new Date(),
+    ),
   )
 
   let selectedConference = $derived($page.url.searchParams.get('c') ?? 'Top 25')
@@ -45,7 +45,7 @@
     }
     if (conferenceContainer) {
       let selectedConference = document.querySelector<HTMLAnchorElement>(
-        '.selected-conference'
+        '.selected-conference',
       )
       conferenceContainer.scrollTo({
         left: selectedConference?.offsetLeft! - document.body.clientWidth / 2,
@@ -56,7 +56,7 @@
 </script>
 
 <div
-  class="flex items-center w-full gap-4 p-2 mt-10 overflow-x-auto week-container snap-x snap-mandatory"
+  class="flex items-center w-full gap-4 p-2 mt-4 overflow-x-auto week-container snap-x snap-mandatory"
   bind:this={weekContainer}
 >
   {#each regularSeasonWeeks as week}
@@ -72,7 +72,7 @@
 </div>
 
 {#if conferences}
-  <div class="flex flex-col items-center w-full mt-6">
+  <div class="flex flex-col items-center w-full mt-3">
     <div
       class="relative flex w-full gap-4 p-2 overflow-x-auto conference-container snap-x"
       bind:this={conferenceContainer}

@@ -6,13 +6,13 @@
 </script>
 
 <ol
-  class="flex flex-col w-full max-w-lg gap-10 px-4 mx-auto mt-8 md:px-12"
+  class="flex flex-col w-full max-w-lg gap-10 px-6 mx-auto md:px-12"
   class:opacity-75={$navigating}
 >
   {#each data.games as game, i}
     {@const currentGameDate = new Date(game.game_date).toLocaleDateString()}
     {@const previousGameDate = new Date(
-      data.games[i - 1]?.game_date
+      data.games[i - 1]?.game_date,
     ).toLocaleDateString()}
 
     {#if i === 0 || currentGameDate !== previousGameDate}
@@ -26,17 +26,3 @@
     </li>
   {/each}
 </ol>
-
-<style>
-  .active::before {
-    content: '';
-    position: absolute;
-    height: 10px;
-    width: 10px;
-    background: theme('colors.green.600');
-    border-radius: 100%;
-    box-shadow: theme('boxShadow.sm');
-    left: -20px;
-    top: calc(50% - 5px);
-  }
-</style>

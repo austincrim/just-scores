@@ -42,10 +42,8 @@
   // })
 </script>
 
-<header
-  class="relative flex flex-col items-center justify-center gap-4 px-4 mt-8 text-xl"
->
-  <a href="/" class="text-7xl !no-underline" class:animate-pulse={$navigating}>
+<header class="relative flex flex-col items-center justify-center px-4 mt-8">
+  <a href="/" class="text-5xl !no-underline" class:animate-pulse={$navigating}>
     <Logo type="initial" />
   </a>
 </header>

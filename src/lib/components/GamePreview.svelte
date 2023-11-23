@@ -7,21 +7,28 @@
 </script>
 
 <a
-  class="!no-underline text-xl"
-  class:active={game.status === 'in_progress'}
+  class="!no-underline text-lg relative active"
   data-sveltekit-preload-data
   href={`/${$page.params.sport}/game/${game.id}`}
 >
-  <div
-    class="flex items-center justify-between gap-12 p-6 border shadow-brutal"
-  >
-    <div class="flex flex-col flex-1 gap-6">
+  {#if game.status === 'in_progress'}
+    <div class="absolute grid grid-cols-1 -translate-y-1/2 top-1/2 -left-6">
+      <span
+        class="w-3 h-3 rounded-full col-span-full row-span-full bg-emerald-500"
+      ></span>
+      <span
+        class="w-3 h-3 rounded-full animate-ping [animation-duration:3s] col-span-full row-span-full bg-emerald-500"
+      ></span>
+    </div>
+  {/if}
+  <div class="flex items-center justify-between gap-6 p-4 border shadow-brutal">
+    <div class="flex flex-col flex-1 gap-3">
       <TeamLine team={game.away_team} type="away" {game} />
       <TeamLine team={game.home_team} type="home" {game} />
     </div>
     <div class="flex flex-col items-center gap-1">
       {#if game.status !== 'pre_game'}
-        <span>{game.box_score?.progress.string}</span>
+        <span class="w-[4ch]">{game.box_score?.progress.string}</span>
       {:else}
         <span>
           {new Date(game.game_date).toLocaleTimeString(undefined, {
@@ -39,18 +46,6 @@
 </a>
 
 <style>
-  .active::before {
-    content: '';
-    position: absolute;
-    height: 10px;
-    width: 10px;
-    background: theme('colors.amber.800');
-    border-radius: 100%;
-    box-shadow: theme('boxShadow.sm');
-    left: -20px;
-    top: calc(50% - 5px);
-  }
-
   .shadow-brutal {
     box-shadow: 5px 5px 0px theme('colors.zinc.900');
   }
