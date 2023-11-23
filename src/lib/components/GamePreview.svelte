@@ -12,7 +12,7 @@
   href={`/${$page.params.sport}/game/${game.id}`}
 >
   {#if game.status === 'in_progress'}
-    <div class="absolute grid grid-cols-1 -translate-y-1/2 top-1/2 -left-6">
+    <div class="absolute grid grid-cols-1 -translate-y-1/2 top-1/2 -left-5">
       <span
         class="w-3 h-3 rounded-full col-span-full row-span-full bg-emerald-500"
       ></span>
