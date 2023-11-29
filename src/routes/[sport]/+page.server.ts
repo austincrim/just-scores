@@ -9,6 +9,11 @@ export async function load({ params, fetch, setHeaders, parent, url }) {
     ? events.current_season.find((w: any) => w.id === weekId)
     : events.current_group
 
+  if (!weekToFetch?.event_ids || weekToFetch?.event_ids.length === 0) {
+    return {
+      games: [],
+    }
+  }
   let gamesRes = await fetch(
     `${PUBLIC_SCORE_API_URL}/${
       params.sport

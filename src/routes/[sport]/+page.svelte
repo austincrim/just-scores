@@ -24,5 +24,7 @@
     >
       <GamePreview {game} />
     </li>
+  {:else}
+    <p class="mt-10 text-center">No games on this day...</p>
   {/each}
 </ol>
