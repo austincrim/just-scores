@@ -4,7 +4,7 @@
 
   let { data } = $props<{ data: LayoutData }>()
 
-  const power5 = ['ACC', 'Big 12', 'Big Ten', 'PAC-12', 'SEC']
+  const power5 = ['ACC', 'Big 12', 'Big Ten', 'Pac-12', 'SEC']
   let conferences = $derived(
     data.leagues
       ? data.leagues
@@ -31,8 +31,8 @@
   let selectedConference = $derived($page.url.searchParams.get('c') ?? 'Top 25')
   let selectedWeek = $derived($page.url.searchParams.get('w') ?? currentWeek.id)
 
-  let weekContainer: HTMLDivElement
-  let conferenceContainer: HTMLDivElement
+  let weekContainer = $state<HTMLDivElement>()
+  let conferenceContainer = $state<HTMLDivElement>()
 
   $effect(() => {
     if (weekContainer && $page.url) {
@@ -40,7 +40,6 @@
         document.querySelector<HTMLAnchorElement>('.current-week')
       weekContainer.scrollTo({
         left: currentWeek?.offsetLeft! - document.body.clientWidth / 2,
-        behavior: 'smooth',
       })
     }
     if (conferenceContainer) {
@@ -49,7 +48,6 @@
       )
       conferenceContainer.scrollTo({
         left: selectedConference?.offsetLeft! - document.body.clientWidth / 2,
-        behavior: 'smooth',
       })
     }
   })
@@ -61,7 +59,9 @@
 >
   {#each regularSeasonWeeks as week}
     <a
-      href="?c={selectedConference}&w={week.id}"
+      href={conferences.length > 0
+        ? `?c=${selectedConference}&w=${week.id}`
+        : `?w=${week.id}`}
       class:current-week={currentWeek?.id === week.id}
       class:selected-week={week.id === $page.url.searchParams.get('w')}
       class="whitespace-nowrap snap-center"

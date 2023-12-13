@@ -2,8 +2,8 @@
   import { beforeNavigate, invalidateAll } from '$app/navigation'
   import { onMount } from 'svelte'
   import FootballScore from './FootballScore.svelte'
-  import type { NFLEvent, NcaaBBEvent, NcaaFBEvent } from '$lib/types'
-    import BasketballScore from './BasketballScore.svelte'
+  import BasketballScore from './BasketballScore.svelte'
+  import type { NFLEvent, NcaaBBEvent, NcaaBBEventStats, NcaaFBEvent } from '$lib/types'
 
   export let data
 
@@ -38,11 +38,11 @@
 
 {#snippet teamLine(line)}
   <div class="flex items-center justify-between">
-    <span class="flex items-center justify-between gap-2 font-bold">
+    <span class="flex items-center justify-between gap-3 font-semibold">
       <img
         src={line.team.logos.small}
         alt="{line.team.name} logo"
-        class="object-cover w-12 h-12"
+        class="object-cover w-20 h-20"
       />
       {#if line.ranking}
         <span class="text-sm">{line.ranking}</span>
@@ -57,7 +57,7 @@
       </span>
     </span>
     {#if line && line.score}
-      <span class="text-3xl tabular-nums">
+      <span class="text-5xl tabular-nums">
         {line.score}
       </span>
     {/if}
@@ -65,14 +65,14 @@
 {/snippet}
 
 <main class="px-4 mx-auto mt-14">
-  <div class="flex items-center gap-12 text-xl">
-    <div class="flex flex-col w-full gap-8">
+  <div class="flex items-center gap-8">
+    <div class="flex flex-col w-full gap-6">
       {@render teamLine({team: data.game.away_team, score: data.game.box_score?.score?.away?.score, ranking: data.game.away_ranking})}
       {@render teamLine({team: data.game.home_team, score: data.game.box_score?.score?.home?.score, ranking: data.game.home_ranking})}
     </div>
-    <div class="flex flex-col items-center gap-1 text-center">
+    <div class="flex flex-col items-center gap-2 text-center">
       {#if data.game.status !== 'pre_game'}
-        <span class="font-mono min-w-fit whitespace-nowrap">
+        <span class="text-2xl tabular-nums min-w-fit">
           {data.game.box_score.progress.string}
         </span>
       {:else}
@@ -83,7 +83,7 @@
         </span>
       {/if}
       {#if data.game.tv_listings_by_country_code?.us}
-        <span class="text-base text-center">
+        <span class="text-center">
           {data.game.tv_listings_by_country_code.us[0].long_name}
         </span>
       {/if}
@@ -94,7 +94,7 @@
       <FootballScore game={data.game} />
     {/if}
     {#if isBasketballEvent(data.game)}
-      <BasketballScore game={data.game} stats={data.stats} />
+      <BasketballScore game={data.game} stats={data.stats as NcaaBBEventStats} />
     {/if}
   </section>
 </main>

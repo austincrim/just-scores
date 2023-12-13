@@ -6,7 +6,7 @@
 </script>
 
 <ol
-  class="flex flex-col w-full max-w-lg gap-10 px-6 mx-auto md:px-12"
+  class="flex flex-col w-full max-w-lg gap-10 px-6 mx-auto mt-8 md:px-12"
   class:opacity-75={$navigating}
 >
   {#each data.games as game, i}

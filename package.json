@@ -11,10 +11,10 @@
   },
   "devDependencies": {
     "@sveltejs/adapter-vercel": "^3.0.3",
-    "@sveltejs/kit": "^1.27.5",
+    "@sveltejs/kit": "^1.27.6",
     "autoprefixer": "^10.4.16",
     "postcss": "^8.4.31",
-    "svelte": "5.0.0-next.2",
+    "svelte": "5.0.0-next.17",
     "svelte-check": "^3.6.0",
     "tailwindcss": "^3.3.5",
     "tslib": "^2.6.2",
@@ -23,7 +23,6 @@
   },
   "type": "module",
   "dependencies": {
-    "bits-ui": "^0.9.4",
     "date-fns": "^2.30.0"
   }
 }

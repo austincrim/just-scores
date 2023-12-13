@@ -44,9 +44,3 @@
     </div>
   </div>
 </a>
-
-<style>
-  .shadow-brutal {
-    box-shadow: 5px 5px 0px theme('colors.zinc.900');
-  }
-</style>

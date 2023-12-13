@@ -51,7 +51,7 @@
   <slot />
 </div>
 <nav
-  class="fixed grid w-[min(95vw,400px)] grid-cols-3 gap-8 px-6 py-3 text-xl -translate-x-1/2 border shadow-2xl rounded-2xl bottom-4 left-1/2 bg-white/40 text-stone-900 backdrop-blur"
+  class="fixed grid w-[min(95vw,400px)] grid-cols-3 gap-8 px-6 py-3 text-xl -translate-x-1/2 border shadow-brutal bottom-4 left-1/2 bg-stone-50/80 text-stone-900 backdrop-blur"
 >
   <a
     class="text-center !no-underline whitespace-nowrap"

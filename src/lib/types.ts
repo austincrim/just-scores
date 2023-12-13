@@ -83,6 +83,10 @@ export type NcaaBBEvent = {
 // TODO fix
 export type BBBoxScore = {
   progress: Progress
+  last_play: {
+    description: string
+    progress: Progress
+  }
   score: {
     home: {
       score: number
@@ -343,11 +347,11 @@ export type PreviewData = {
 }
 
 export type LineScores = {
-  home: AwayElement[]
-  away: AwayElement[]
+  home: Element[]
+  away: Element[]
 }
 
-export type AwayElement = {
+export type Element = {
   team_fouls: null
   id: number
   score: number
