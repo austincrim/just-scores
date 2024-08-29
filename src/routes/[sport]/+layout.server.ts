@@ -1,5 +1,5 @@
-import { PUBLIC_SCORE_API_URL } from '$env/static/public'
-import { error, redirect } from '@sveltejs/kit'
+import { PUBLIC_SCORE_API_URL } from "$env/static/public"
+import { error } from "@sveltejs/kit"
 
 type League = {
   name: string | undefined
@@ -7,14 +7,14 @@ type League = {
 }
 
 export async function load({ fetch, params, url }) {
-  let conference = url.searchParams.get('c')
+  let conference = url.searchParams.get("c")
   let [leaguesRes, scheduleRes] = await Promise.all([
     fetch(`${PUBLIC_SCORE_API_URL}/${params.sport}/events/conferences`),
     fetch(
       `${PUBLIC_SCORE_API_URL}/${
         params.sport
-      }/schedule?utc_offset=-21600&conference=${conference ?? ''}`
-    ),
+      }/schedule?utc_offset=-21600&conference=${conference ?? ""}`
+    )
   ])
 
   let leagues: League[] | null = null
@@ -40,6 +40,6 @@ export async function load({ fetch, params, url }) {
 
   return {
     leagues,
-    events,
+    events
   }
 }
